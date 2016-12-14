@@ -55,7 +55,7 @@ ARCHITECTURE SYN OF clock IS
 	SIGNAL sub_wire1	: STD_LOGIC_VECTOR (1 DOWNTO 0);
 	SIGNAL sub_wire2_bv	: BIT_VECTOR (0 DOWNTO 0);
 	SIGNAL sub_wire2	: STD_LOGIC_VECTOR (0 DOWNTO 0);
-	SIGNAL sub_wire3	: STD_LOGIC_VECTOR (4 DOWNTO 0);
+	SIGNAL sub_wire3	: STD_LOGIC_VECTOR (6 DOWNTO 0);
 	SIGNAL sub_wire4	: STD_LOGIC ;
 
 
@@ -67,6 +67,7 @@ ARCHITECTURE SYN OF clock IS
 		clk0_duty_cycle		: NATURAL;
 		clk0_multiply_by		: NATURAL;
 		clk0_phase_shift		: STRING;
+		compensate_clock		: STRING;
 		inclk0_input_frequency		: NATURAL;
 		intended_device_family		: STRING;
 		lpm_hint		: STRING;
@@ -81,6 +82,7 @@ ARCHITECTURE SYN OF clock IS
 		port_clkswitch		: STRING;
 		port_configupdate		: STRING;
 		port_fbin		: STRING;
+		port_fbout		: STRING;
 		port_inclk0		: STRING;
 		port_inclk1		: STRING;
 		port_locked		: STRING;
@@ -104,21 +106,22 @@ ARCHITECTURE SYN OF clock IS
 		port_clk3		: STRING;
 		port_clk4		: STRING;
 		port_clk5		: STRING;
+		port_clk6		: STRING;
+		port_clk7		: STRING;
+		port_clk8		: STRING;
+		port_clk9		: STRING;
 		port_clkena0		: STRING;
 		port_clkena1		: STRING;
 		port_clkena2		: STRING;
 		port_clkena3		: STRING;
 		port_clkena4		: STRING;
 		port_clkena5		: STRING;
-		port_extclk0		: STRING;
-		port_extclk1		: STRING;
-		port_extclk2		: STRING;
-		port_extclk3		: STRING;
+		using_fbmimicbidir_port		: STRING;
 		width_clock		: NATURAL
 	);
 	PORT (
 			inclk	: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
-			clk	: OUT STD_LOGIC_VECTOR (4 DOWNTO 0)
+			clk	: OUT STD_LOGIC_VECTOR (6 DOWNTO 0)
 	);
 	END COMPONENT;
 
@@ -137,12 +140,13 @@ BEGIN
 		clk0_duty_cycle => 50,
 		clk0_multiply_by => 4,
 		clk0_phase_shift => "0",
+		compensate_clock => "CLK0",
 		inclk0_input_frequency => 8000,
-		intended_device_family => "Cyclone IV GX",
+		intended_device_family => "Arria II GX",
 		lpm_hint => "CBX_MODULE_PREFIX=clock",
 		lpm_type => "altpll",
-		operation_mode => "NO_COMPENSATION",
-		pll_type => "AUTO",
+		operation_mode => "NORMAL",
+		pll_type => "Left_Right",
 		port_activeclock => "PORT_UNUSED",
 		port_areset => "PORT_UNUSED",
 		port_clkbad0 => "PORT_UNUSED",
@@ -151,6 +155,7 @@ BEGIN
 		port_clkswitch => "PORT_UNUSED",
 		port_configupdate => "PORT_UNUSED",
 		port_fbin => "PORT_UNUSED",
+		port_fbout => "PORT_UNUSED",
 		port_inclk0 => "PORT_USED",
 		port_inclk1 => "PORT_UNUSED",
 		port_locked => "PORT_UNUSED",
@@ -174,17 +179,18 @@ BEGIN
 		port_clk3 => "PORT_UNUSED",
 		port_clk4 => "PORT_UNUSED",
 		port_clk5 => "PORT_UNUSED",
+		port_clk6 => "PORT_UNUSED",
+		port_clk7 => "PORT_UNUSED",
+		port_clk8 => "PORT_UNUSED",
+		port_clk9 => "PORT_UNUSED",
 		port_clkena0 => "PORT_UNUSED",
 		port_clkena1 => "PORT_UNUSED",
 		port_clkena2 => "PORT_UNUSED",
 		port_clkena3 => "PORT_UNUSED",
 		port_clkena4 => "PORT_UNUSED",
 		port_clkena5 => "PORT_UNUSED",
-		port_extclk0 => "PORT_UNUSED",
-		port_extclk1 => "PORT_UNUSED",
-		port_extclk2 => "PORT_UNUSED",
-		port_extclk3 => "PORT_UNUSED",
-		width_clock => 5
+		using_fbmimicbidir_port => "OFF",
+		width_clock => 7
 	)
 	PORT MAP (
 		inclk => sub_wire1,
@@ -208,12 +214,12 @@ END SYN;
 -- Retrieval info: PRIVATE: CLKBAD_SWITCHOVER_CHECK STRING "0"
 -- Retrieval info: PRIVATE: CLKLOSS_CHECK STRING "0"
 -- Retrieval info: PRIVATE: CLKSWITCH_CHECK STRING "0"
--- Retrieval info: PRIVATE: CNX_NO_COMPENSATE_RADIO STRING "1"
+-- Retrieval info: PRIVATE: CNX_NO_COMPENSATE_RADIO STRING "0"
 -- Retrieval info: PRIVATE: CREATE_CLKBAD_CHECK STRING "0"
 -- Retrieval info: PRIVATE: CREATE_INCLK1_CHECK STRING "0"
 -- Retrieval info: PRIVATE: CUR_DEDICATED_CLK STRING "c0"
 -- Retrieval info: PRIVATE: CUR_FBIN_CLK STRING "c0"
--- Retrieval info: PRIVATE: DEVICE_SPEED_GRADE STRING "8"
+-- Retrieval info: PRIVATE: DEVICE_SPEED_GRADE STRING "Any"
 -- Retrieval info: PRIVATE: DIV_FACTOR0 NUMERIC "5"
 -- Retrieval info: PRIVATE: DUTY_CYCLE0 STRING "50.00000000"
 -- Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE0 STRING "100.000000"
@@ -230,7 +236,7 @@ END SYN;
 -- Retrieval info: PRIVATE: INCLK1_FREQ_EDIT_CHANGED STRING "1"
 -- Retrieval info: PRIVATE: INCLK1_FREQ_UNIT_CHANGED STRING "1"
 -- Retrieval info: PRIVATE: INCLK1_FREQ_UNIT_COMBO STRING "MHz"
--- Retrieval info: PRIVATE: INTENDED_DEVICE_FAMILY STRING "Cyclone IV GX"
+-- Retrieval info: PRIVATE: INTENDED_DEVICE_FAMILY STRING "Arria II GX"
 -- Retrieval info: PRIVATE: INT_FEEDBACK__MODE_RADIO STRING "1"
 -- Retrieval info: PRIVATE: LOCKED_OUTPUT_CHECK STRING "0"
 -- Retrieval info: PRIVATE: LONG_SCAN_RADIO STRING "1"
@@ -238,9 +244,8 @@ END SYN;
 -- Retrieval info: PRIVATE: LVDS_MODE_DATA_RATE_DIRTY NUMERIC "0"
 -- Retrieval info: PRIVATE: LVDS_PHASE_SHIFT_UNIT0 STRING "deg"
 -- Retrieval info: PRIVATE: MIG_DEVICE_SPEED_GRADE STRING "Any"
--- Retrieval info: PRIVATE: MIRROR_CLK0 STRING "0"
 -- Retrieval info: PRIVATE: MULT_FACTOR0 NUMERIC "4"
--- Retrieval info: PRIVATE: NORMAL_MODE_RADIO STRING "0"
+-- Retrieval info: PRIVATE: NORMAL_MODE_RADIO STRING "1"
 -- Retrieval info: PRIVATE: OUTPUT_FREQ0 STRING "100.00000000"
 -- Retrieval info: PRIVATE: OUTPUT_FREQ_MODE0 STRING "0"
 -- Retrieval info: PRIVATE: OUTPUT_FREQ_UNIT0 STRING "MHz"
@@ -275,7 +280,6 @@ END SYN;
 -- Retrieval info: PRIVATE: SWITCHOVER_FEATURE_ENABLED STRING "1"
 -- Retrieval info: PRIVATE: SYNTH_WRAPPER_GEN_POSTFIX STRING "0"
 -- Retrieval info: PRIVATE: USE_CLK0 STRING "1"
--- Retrieval info: PRIVATE: USE_CLKENA0 STRING "0"
 -- Retrieval info: PRIVATE: USE_MIL_SPEED_GRADE NUMERIC "0"
 -- Retrieval info: PRIVATE: ZERO_DELAY_RADIO STRING "0"
 -- Retrieval info: LIBRARY: altera_mf altera_mf.altera_mf_components.all
@@ -284,11 +288,12 @@ END SYN;
 -- Retrieval info: CONSTANT: CLK0_DUTY_CYCLE NUMERIC "50"
 -- Retrieval info: CONSTANT: CLK0_MULTIPLY_BY NUMERIC "4"
 -- Retrieval info: CONSTANT: CLK0_PHASE_SHIFT STRING "0"
+-- Retrieval info: CONSTANT: COMPENSATE_CLOCK STRING "CLK0"
 -- Retrieval info: CONSTANT: INCLK0_INPUT_FREQUENCY NUMERIC "8000"
--- Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Cyclone IV GX"
+-- Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Arria II GX"
 -- Retrieval info: CONSTANT: LPM_TYPE STRING "altpll"
--- Retrieval info: CONSTANT: OPERATION_MODE STRING "NO_COMPENSATION"
--- Retrieval info: CONSTANT: PLL_TYPE STRING "AUTO"
+-- Retrieval info: CONSTANT: OPERATION_MODE STRING "NORMAL"
+-- Retrieval info: CONSTANT: PLL_TYPE STRING "Left_Right"
 -- Retrieval info: CONSTANT: PORT_ACTIVECLOCK STRING "PORT_UNUSED"
 -- Retrieval info: CONSTANT: PORT_ARESET STRING "PORT_UNUSED"
 -- Retrieval info: CONSTANT: PORT_CLKBAD0 STRING "PORT_UNUSED"
@@ -297,6 +302,7 @@ END SYN;
 -- Retrieval info: CONSTANT: PORT_CLKSWITCH STRING "PORT_UNUSED"
 -- Retrieval info: CONSTANT: PORT_CONFIGUPDATE STRING "PORT_UNUSED"
 -- Retrieval info: CONSTANT: PORT_FBIN STRING "PORT_UNUSED"
+-- Retrieval info: CONSTANT: PORT_FBOUT STRING "PORT_UNUSED"
 -- Retrieval info: CONSTANT: PORT_INCLK0 STRING "PORT_USED"
 -- Retrieval info: CONSTANT: PORT_INCLK1 STRING "PORT_UNUSED"
 -- Retrieval info: CONSTANT: PORT_LOCKED STRING "PORT_UNUSED"
@@ -320,18 +326,19 @@ END SYN;
 -- Retrieval info: CONSTANT: PORT_clk3 STRING "PORT_UNUSED"
 -- Retrieval info: CONSTANT: PORT_clk4 STRING "PORT_UNUSED"
 -- Retrieval info: CONSTANT: PORT_clk5 STRING "PORT_UNUSED"
+-- Retrieval info: CONSTANT: PORT_clk6 STRING "PORT_UNUSED"
+-- Retrieval info: CONSTANT: PORT_clk7 STRING "PORT_UNUSED"
+-- Retrieval info: CONSTANT: PORT_clk8 STRING "PORT_UNUSED"
+-- Retrieval info: CONSTANT: PORT_clk9 STRING "PORT_UNUSED"
 -- Retrieval info: CONSTANT: PORT_clkena0 STRING "PORT_UNUSED"
 -- Retrieval info: CONSTANT: PORT_clkena1 STRING "PORT_UNUSED"
 -- Retrieval info: CONSTANT: PORT_clkena2 STRING "PORT_UNUSED"
 -- Retrieval info: CONSTANT: PORT_clkena3 STRING "PORT_UNUSED"
 -- Retrieval info: CONSTANT: PORT_clkena4 STRING "PORT_UNUSED"
 -- Retrieval info: CONSTANT: PORT_clkena5 STRING "PORT_UNUSED"
--- Retrieval info: CONSTANT: PORT_extclk0 STRING "PORT_UNUSED"
--- Retrieval info: CONSTANT: PORT_extclk1 STRING "PORT_UNUSED"
--- Retrieval info: CONSTANT: PORT_extclk2 STRING "PORT_UNUSED"
--- Retrieval info: CONSTANT: PORT_extclk3 STRING "PORT_UNUSED"
--- Retrieval info: CONSTANT: WIDTH_CLOCK NUMERIC "5"
--- Retrieval info: USED_PORT: @clk 0 0 5 0 OUTPUT_CLK_EXT VCC "@clk[4..0]"
+-- Retrieval info: CONSTANT: USING_FBMIMICBIDIR_PORT STRING "OFF"
+-- Retrieval info: CONSTANT: WIDTH_CLOCK NUMERIC "7"
+-- Retrieval info: USED_PORT: @clk 0 0 7 0 OUTPUT_CLK_EXT VCC "@clk[6..0]"
 -- Retrieval info: USED_PORT: @inclk 0 0 2 0 INPUT_CLK_EXT VCC "@inclk[1..0]"
 -- Retrieval info: USED_PORT: c0 0 0 0 0 OUTPUT_CLK_EXT VCC "c0"
 -- Retrieval info: USED_PORT: inclk0 0 0 0 0 INPUT_CLK_EXT GND "inclk0"

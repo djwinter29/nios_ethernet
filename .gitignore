@@ -27,3 +27,4 @@ obj
 *.a
 *.objdump
 .force_relink
+*.txt
