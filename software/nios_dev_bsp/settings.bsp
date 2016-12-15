@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Dec 14, 2016 5:54:02 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1481738042585</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>14-Dec-2016 17:57:18</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1481738238392</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>D:\TonejetSource\MyProject\nios_ethernet\software\nios_dev_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\core.sopcinfo</SopcDesignFile>
@@ -900,25 +900,25 @@
         </Setting>
         <MemoryMap>
                 <slaveDescriptor>ram</slaveDescriptor>
-                <addressRange>0x00000000 - 0x00007FFF</addressRange>
-                <addressSpan>32768</addressSpan>
+                <addressRange>0x00000000 - 0x0004FFFF</addressRange>
+                <addressSpan>327680</addressSpan>
                 <attributes>memory</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>uart</slaveDescriptor>
-                <addressRange>0x00010000 - 0x00010007</addressRange>
+                <addressRange>0x00110000 - 0x00110007</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes>printable</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>timer</slaveDescriptor>
-                <addressRange>0x00020020 - 0x0002003F</addressRange>
+                <addressRange>0x00120020 - 0x0012003F</addressRange>
                 <addressSpan>32</addressSpan>
                 <attributes>timer</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>timestamp</slaveDescriptor>
-                <addressRange>0x00020040 - 0x0002007F</addressRange>
+                <addressRange>0x00120040 - 0x0012007F</addressRange>
                 <addressSpan>64</addressSpan>
                 <attributes>timer</attributes>
         </MemoryMap>
