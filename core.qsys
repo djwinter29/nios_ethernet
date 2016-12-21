@@ -47,7 +47,7 @@
    {
       datum _sortIndex
       {
-         value = "7";
+         value = "8";
          type = "int";
       }
       datum sopceditor_expanded
@@ -132,6 +132,19 @@
          type = "String";
       }
    }
+   element tse
+   {
+      datum _sortIndex
+      {
+         value = "7";
+         type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "0";
+         type = "boolean";
+      }
+   }
    element uart
    {
       datum _sortIndex
@@ -175,33 +188,43 @@
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
  <interface name="clk" internal="clk.clk_in" type="clock" dir="end" />
- <interface
-   name="enet_mac_misc"
-   internal="enet.tse_mac_misc"
-   type="conduit"
-   dir="end" />
- <interface
-   name="enet_mac_rgmii"
-   internal="enet.tse_mac_rgmii"
-   type="conduit"
-   dir="end" />
- <interface
-   name="enet_mac_status"
-   internal="enet.tse_mac_status"
-   type="conduit"
-   dir="end" />
- <interface name="enet_mdio" internal="enet.tse_mdio" type="conduit" dir="end" />
- <interface
-   name="enet_pcs_mac_rx_clock"
-   internal="enet.tse_pcs_mac_rx_clock"
-   type="clock"
-   dir="end" />
- <interface
-   name="enet_pcs_mac_tx_clock"
-   internal="enet.tse_pcs_mac_tx_clock"
-   type="clock"
-   dir="end" />
+ <interface name="enet_mac_misc" internal="enet.tse_mac_misc" />
+ <interface name="enet_mac_rgmii" internal="enet.tse_mac_rgmii" />
+ <interface name="enet_mac_status" internal="enet.tse_mac_status" />
+ <interface name="enet_mdio" internal="enet.tse_mdio" />
+ <interface name="enet_pcs_mac_rx_clock" internal="enet.tse_pcs_mac_rx_clock" />
+ <interface name="enet_pcs_mac_tx_clock" internal="enet.tse_pcs_mac_tx_clock" />
  <interface name="reset" internal="clk.clk_in_reset" type="reset" dir="end" />
+ <interface
+   name="tse_mac_mdio"
+   internal="tse.mac_mdio_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="tse_mac_misc"
+   internal="tse.mac_misc_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="tse_mac_rgmii"
+   internal="tse.mac_rgmii_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="tse_mac_status"
+   internal="tse.mac_status_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="tse_pcs_mac_rx_clock"
+   internal="tse.pcs_mac_rx_clock_connection"
+   type="clock"
+   dir="end" />
+ <interface
+   name="tse_pcs_mac_tx_clock"
+   internal="tse.pcs_mac_tx_clock_connection"
+   type="clock"
+   dir="end" />
  <module name="clk" kind="clock_source" version="16.1" enabled="1">
   <parameter name="clockFrequency" value="100000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -228,7 +251,7 @@
   <parameter name="dataAddrWidth" value="22" />
   <parameter name="dataMasterHighPerformanceAddrWidth" value="1" />
   <parameter name="dataMasterHighPerformanceMapParam" value="" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='ram.s2' start='0x0' end='0x20000' type='altera_avalon_onchip_memory2.s2' /><slave name='uart.avalon_jtag_slave' start='0x110000' end='0x110008' type='altera_avalon_jtag_uart.avalon_jtag_slave' /><slave name='cpu.debug_mem_slave' start='0x110800' end='0x111000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='timer.s1' start='0x120020' end='0x120040' type='altera_avalon_timer.s1' /><slave name='timestamp.s1' start='0x120040' end='0x120080' type='altera_avalon_timer.s1' /><slave name='enet_enet_dma.cfg' start='0x200000' end='0x200020' type='enet_dma.cfg' /><slave name='enet_tse.control_port' start='0x300000' end='0x300400' type='altera_eth_tse.control_port' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='ram.s2' start='0x0' end='0x20000' type='altera_avalon_onchip_memory2.s2' /><slave name='uart.avalon_jtag_slave' start='0x110000' end='0x110008' type='altera_avalon_jtag_uart.avalon_jtag_slave' /><slave name='cpu.debug_mem_slave' start='0x110800' end='0x111000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='timer.s1' start='0x120020' end='0x120040' type='altera_avalon_timer.s1' /><slave name='timestamp.s1' start='0x120040' end='0x120080' type='altera_avalon_timer.s1' /><slave name='enet_enet_dma.cfg' start='0x200000' end='0x200020' type='enet_dma.cfg' /><slave name='tse.control_port' start='0x300000' end='0x300400' type='altera_eth_tse.control_port' /></address-map>]]></parameter>
   <parameter name="data_master_high_performance_paddr_base" value="0" />
   <parameter name="data_master_high_performance_paddr_size" value="0" />
   <parameter name="data_master_paddr_base" value="0" />
@@ -398,12 +421,6 @@
   <parameter name="AUTO_ENET_WRITE_ADDRESS_MAP"><![CDATA[<address-map><slave name='enetram.s2' start='0x20000' end='0x21000' /></address-map>]]></parameter>
   <parameter name="AUTO_ENET_WRITE_ADDRESS_WIDTH" value="AddressWidth = 18" />
   <parameter name="AUTO_GENERATION_ID" value="0" />
-  <parameter name="AUTO_TSE_PCS_MAC_RX_CLOCK_CLOCK_DOMAIN" value="2" />
-  <parameter name="AUTO_TSE_PCS_MAC_RX_CLOCK_CLOCK_RATE" value="0" />
-  <parameter name="AUTO_TSE_PCS_MAC_RX_CLOCK_RESET_DOMAIN" value="2" />
-  <parameter name="AUTO_TSE_PCS_MAC_TX_CLOCK_CLOCK_DOMAIN" value="3" />
-  <parameter name="AUTO_TSE_PCS_MAC_TX_CLOCK_CLOCK_RATE" value="0" />
-  <parameter name="AUTO_TSE_PCS_MAC_TX_CLOCK_RESET_DOMAIN" value="3" />
   <parameter name="AUTO_UNIQUE_ID" value="$${FILENAME}_enet" />
  </module>
  <module
@@ -498,6 +515,47 @@
   <parameter name="timeoutPulseOutput" value="false" />
   <parameter name="watchdogPulse" value="2" />
  </module>
+ <module name="tse" kind="altera_eth_tse" version="16.1" enabled="1">
+  <parameter name="AUTO_DEVICE" value="EP2AGX125EF35C4" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="4" />
+  <parameter name="core_variation" value="MAC_ONLY" />
+  <parameter name="deviceFamilyName" value="Arria II GX" />
+  <parameter name="eg_addr" value="11" />
+  <parameter name="ena_hash" value="false" />
+  <parameter name="enable_alt_reconfig" value="false" />
+  <parameter name="enable_ecc" value="false" />
+  <parameter name="enable_ena" value="32" />
+  <parameter name="enable_gmii_loopback" value="false" />
+  <parameter name="enable_hd_logic" value="true" />
+  <parameter name="enable_mac_flow_ctrl" value="false" />
+  <parameter name="enable_mac_vlan" value="false" />
+  <parameter name="enable_magic_detect" value="false" />
+  <parameter name="enable_ptp_1step" value="false" />
+  <parameter name="enable_sgmii" value="false" />
+  <parameter name="enable_shift16" value="true" />
+  <parameter name="enable_sup_addr" value="false" />
+  <parameter name="enable_timestamping" value="false" />
+  <parameter name="enable_use_internal_fifo" value="true" />
+  <parameter name="export_pwrdn" value="false" />
+  <parameter name="ext_stat_cnt_ena" value="false" />
+  <parameter name="ifGMII" value="RGMII" />
+  <parameter name="ing_addr" value="11" />
+  <parameter name="max_channels" value="1" />
+  <parameter name="mdio_clk_div" value="40" />
+  <parameter name="nf_phyip_rcfg_enable" value="false" />
+  <parameter name="phy_identifier" value="0" />
+  <parameter name="phyip_en_synce_support" value="false" />
+  <parameter name="phyip_pll_base_data_rate" value="1250 Mbps" />
+  <parameter name="phyip_pll_type" value="CMU" />
+  <parameter name="phyip_pma_bonding_mode" value="x1" />
+  <parameter name="starting_channel_number" value="0" />
+  <parameter name="stat_cnt_ena" value="true" />
+  <parameter name="transceiver_type" value="NONE" />
+  <parameter name="tstamp_fp_width" value="4" />
+  <parameter name="useMDIO" value="true" />
+  <parameter name="use_mac_clken" value="false" />
+  <parameter name="use_misc_ports" value="true" />
+ </module>
  <module name="uart" kind="altera_avalon_jtag_uart" version="16.1" enabled="1">
   <parameter name="allowMultipleConnections" value="false" />
   <parameter name="avalonSpec" value="2.0" />
@@ -520,6 +578,15 @@
    end="uart.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x00110000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.1"
+   start="cpu.data_master"
+   end="tse.control_port">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00300000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -559,15 +626,6 @@
   <parameter name="baseAddress" value="0x0000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
- <connection
-   kind="avalon"
-   version="16.1"
-   start="cpu.data_master"
-   end="enet.tse_control_port">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00300000" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
  <connection kind="avalon" version="16.1" start="enet.enet_read" end="enetram.s2">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x00020000" />
@@ -605,6 +663,16 @@
   <parameter name="baseAddress" value="0x00020000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
+ <connection
+   kind="avalon_streaming"
+   version="16.1"
+   start="enet.data_out"
+   end="tse.transmit" />
+ <connection
+   kind="avalon_streaming"
+   version="16.1"
+   start="tse.receive"
+   end="enet.data_in" />
  <connection kind="clock" version="16.1" start="clk.clk" end="cpu.clk" />
  <connection kind="clock" version="16.1" start="clk.clk" end="uart.clk" />
  <connection kind="clock" version="16.1" start="clk.clk" end="timestamp.clk" />
@@ -614,6 +682,21 @@
  <connection kind="clock" version="16.1" start="clk.clk" end="enetram.clk1" />
  <connection kind="clock" version="16.1" start="clk.clk" end="ram.clk2" />
  <connection kind="clock" version="16.1" start="clk.clk" end="enetram.clk2" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="clk.clk"
+   end="tse.control_port_clock_connection" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="clk.clk"
+   end="tse.receive_clock_connection" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="clk.clk"
+   end="tse.transmit_clock_connection" />
  <connection
    kind="interrupt"
    version="16.1"
@@ -651,6 +734,11 @@
    version="16.1"
    start="clk.clk_reset"
    end="enetram.reset2" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="clk.clk_reset"
+   end="tse.reset_connection" />
  <connection
    kind="reset"
    version="16.1"

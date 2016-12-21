@@ -62,20 +62,47 @@
          type = "String";
       }
    }
-   element enet_dma
+   element enet
    {
-      datum _sortIndex
+      datum _originalDeviceFamily
       {
-         value = "4";
-         type = "int";
-      }
-      datum sopceditor_expanded
-      {
-         value = "0";
-         type = "boolean";
+         value = "Arria II GX";
+         type = "String";
       }
    }
-   element mac_filter
+   element enet
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Arria II GX";
+         type = "String";
+      }
+   }
+   element enet
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Arria II GX";
+         type = "String";
+      }
+   }
+   element enet
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Arria II GX";
+         type = "String";
+      }
+   }
+   element enet
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Arria II GX";
+         type = "String";
+      }
+   }
+   element enet_dma
    {
       datum _sortIndex
       {
@@ -88,11 +115,11 @@
          type = "boolean";
       }
    }
-   element tse
+   element mac_filter
    {
       datum _sortIndex
       {
-         value = "1";
+         value = "2";
          type = "int";
       }
       datum sopceditor_expanded
@@ -101,11 +128,11 @@
          type = "boolean";
       }
    }
-   element tsemdio
+   element rx_timing
    {
       datum _sortIndex
       {
-         value = "2";
+         value = "1";
          type = "int";
       }
       datum sopceditor_expanded
@@ -136,6 +163,16 @@
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
  <interface name="clk" internal="clk.clk_in" type="clock" dir="end" />
+ <interface
+   name="data_in"
+   internal="rx_timing.in"
+   type="avalon_streaming"
+   dir="end" />
+ <interface
+   name="data_out"
+   internal="enet_dma.out"
+   type="avalon_streaming"
+   dir="start" />
  <interface name="enet_bypass" internal="mac_filter.bypass" />
  <interface name="enet_dma_cfg" internal="enet_dma.cfg" type="avalon" dir="end" />
  <interface
@@ -146,37 +183,6 @@
  <interface name="enet_read" internal="enet_dma.read" type="avalon" dir="start" />
  <interface name="enet_write" internal="enet_dma.write" type="avalon" dir="start" />
  <interface name="reset" internal="clk.clk_in_reset" type="reset" dir="end" />
- <interface
-   name="tse_control_port"
-   internal="tse.control_port"
-   type="avalon"
-   dir="end" />
- <interface
-   name="tse_mac_misc"
-   internal="tse.mac_misc_connection"
-   type="conduit"
-   dir="end" />
- <interface
-   name="tse_mac_rgmii"
-   internal="tse.mac_rgmii_connection"
-   type="conduit"
-   dir="end" />
- <interface
-   name="tse_mac_status"
-   internal="tse.mac_status_connection"
-   type="conduit"
-   dir="end" />
- <interface name="tse_mdio" internal="tsemdio.mdio" type="conduit" dir="end" />
- <interface
-   name="tse_pcs_mac_rx_clock"
-   internal="tse.pcs_mac_rx_clock_connection"
-   type="clock"
-   dir="end" />
- <interface
-   name="tse_pcs_mac_tx_clock"
-   internal="tse.pcs_mac_tx_clock_connection"
-   type="clock"
-   dir="end" />
  <module name="clk" kind="clock_source" version="16.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="false" />
@@ -187,48 +193,23 @@
  <module name="mac_filter" kind="mac_filter" version="16.1" enabled="1">
   <parameter name="enableBypass" value="false" />
  </module>
- <module name="tse" kind="altera_eth_tse" version="16.1" enabled="1">
-  <parameter name="AUTO_DEVICE" value="EP2AGX125EF35C4" />
-  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="4" />
-  <parameter name="core_variation" value="MAC_ONLY" />
-  <parameter name="deviceFamilyName" value="Arria II GX" />
-  <parameter name="eg_addr" value="11" />
-  <parameter name="ena_hash" value="false" />
-  <parameter name="enable_alt_reconfig" value="false" />
-  <parameter name="enable_ecc" value="false" />
-  <parameter name="enable_ena" value="32" />
-  <parameter name="enable_gmii_loopback" value="false" />
-  <parameter name="enable_hd_logic" value="true" />
-  <parameter name="enable_mac_flow_ctrl" value="false" />
-  <parameter name="enable_mac_vlan" value="false" />
-  <parameter name="enable_magic_detect" value="true" />
-  <parameter name="enable_ptp_1step" value="false" />
-  <parameter name="enable_sgmii" value="false" />
-  <parameter name="enable_shift16" value="true" />
-  <parameter name="enable_sup_addr" value="false" />
-  <parameter name="enable_timestamping" value="false" />
-  <parameter name="enable_use_internal_fifo" value="true" />
-  <parameter name="export_pwrdn" value="false" />
-  <parameter name="ext_stat_cnt_ena" value="false" />
-  <parameter name="ifGMII" value="RGMII" />
-  <parameter name="ing_addr" value="11" />
-  <parameter name="max_channels" value="1" />
-  <parameter name="mdio_clk_div" value="40" />
-  <parameter name="nf_phyip_rcfg_enable" value="false" />
-  <parameter name="phy_identifier" value="0" />
-  <parameter name="phyip_en_synce_support" value="false" />
-  <parameter name="phyip_pll_base_data_rate" value="1250 Mbps" />
-  <parameter name="phyip_pll_type" value="CMU" />
-  <parameter name="phyip_pma_bonding_mode" value="x1" />
-  <parameter name="starting_channel_number" value="0" />
-  <parameter name="stat_cnt_ena" value="true" />
-  <parameter name="transceiver_type" value="NONE" />
-  <parameter name="tstamp_fp_width" value="4" />
-  <parameter name="useMDIO" value="true" />
-  <parameter name="use_mac_clken" value="false" />
-  <parameter name="use_misc_ports" value="true" />
+ <module name="rx_timing" kind="timing_adapter" version="16.1" enabled="1">
+  <parameter name="inBitsPerSymbol" value="8" />
+  <parameter name="inChannelWidth" value="0" />
+  <parameter name="inErrorDescriptor" value="" />
+  <parameter name="inErrorWidth" value="6" />
+  <parameter name="inMaxChannel" value="0" />
+  <parameter name="inReadyLatency" value="2" />
+  <parameter name="inSymbolsPerBeat" value="4" />
+  <parameter name="inUseEmpty" value="false" />
+  <parameter name="inUseEmptyPort" value="AUTO" />
+  <parameter name="inUsePackets" value="true" />
+  <parameter name="inUseReady" value="true" />
+  <parameter name="inUseValid" value="true" />
+  <parameter name="outReadyLatency" value="0" />
+  <parameter name="outUseReady" value="true" />
+  <parameter name="outUseValid" value="true" />
  </module>
- <module name="tsemdio" kind="mdio_interface" version="16.1" enabled="1" />
  <connection
    kind="avalon_streaming"
    version="16.1"
@@ -242,41 +223,11 @@
  <connection
    kind="avalon_streaming"
    version="16.1"
-   start="enet_dma.out"
-   end="tse.transmit" />
- <connection
-   kind="avalon_streaming"
-   version="16.1"
-   start="tse.receive"
+   start="rx_timing.out"
    end="mac_filter.in" />
+ <connection kind="clock" version="16.1" start="clk.clk" end="rx_timing.clk" />
  <connection kind="clock" version="16.1" start="clk.clk" end="mac_filter.clock" />
  <connection kind="clock" version="16.1" start="clk.clk" end="enet_dma.clock" />
- <connection
-   kind="clock"
-   version="16.1"
-   start="clk.clk"
-   end="tse.control_port_clock_connection" />
- <connection
-   kind="clock"
-   version="16.1"
-   start="clk.clk"
-   end="tse.receive_clock_connection" />
- <connection
-   kind="clock"
-   version="16.1"
-   start="clk.clk"
-   end="tse.transmit_clock_connection" />
- <connection
-   kind="conduit"
-   version="16.1"
-   start="tse.mac_mdio_connection"
-   end="tsemdio.mdiopad">
-  <parameter name="endPort" value="" />
-  <parameter name="endPortLSB" value="0" />
-  <parameter name="startPort" value="" />
-  <parameter name="startPortLSB" value="0" />
-  <parameter name="width" value="0" />
- </connection>
  <connection
    kind="reset"
    version="16.1"
@@ -291,7 +242,7 @@
    kind="reset"
    version="16.1"
    start="clk.clk_reset"
-   end="tse.reset_connection" />
+   end="rx_timing.reset" />
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
  <interconnectRequirement for="$system" name="qsys_mm.enableEccProtection" value="FALSE" />
  <interconnectRequirement for="$system" name="qsys_mm.insertDefaultSlave" value="FALSE" />
