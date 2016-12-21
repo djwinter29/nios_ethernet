@@ -14,6 +14,7 @@ entity EnetMACDataFilter is
         asi_in_valid              : in  std_logic := '0';
         asi_in_startofpacket      : in  std_logic;
         asi_in_endofpacket        : in  std_logic;
+        asi_in_error              : in  std_logic_vector(5 downto 0);
         asi_in_empty              : in  std_logic_vector(1 downto 0);
         asi_in_data               : in  std_logic_vector(31 downto 0);
         
@@ -22,6 +23,7 @@ entity EnetMACDataFilter is
         aso_bypass_valid          : out  std_logic := '0';
         aso_bypass_startofpacket  : out  std_logic;
         aso_bypass_endofpacket    : out  std_logic;
+        aso_bypass_error          : out  std_logic;
         aso_bypass_empty          : out  std_logic_vector(1 downto 0);
         aso_bypass_data           : out  std_logic_vector(31 downto 0);
         
@@ -30,6 +32,7 @@ entity EnetMACDataFilter is
         aso_out_valid             : out  std_logic := '0';
         aso_out_startofpacket     : out  std_logic;
         aso_out_endofpacket       : out  std_logic;
+        aso_out_error             : out  std_logic_vector(5 downto 0);
         aso_out_empty             : out  std_logic_vector(1 downto 0);
         aso_out_data              : out  std_logic_vector(31 downto 0)
     );

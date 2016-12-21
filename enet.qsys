@@ -6,7 +6,7 @@
    version="1.0"
    description=""
    tags=""
-   categories="" />
+   categories="System" />
  <parameter name="bonusData"><![CDATA[bonusData 
 {
    element clk
@@ -20,6 +20,22 @@
       {
          value = "0";
          type = "boolean";
+      }
+   }
+   element enet
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Arria II GX";
+         type = "String";
+      }
+   }
+   element enet
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Arria II GX";
+         type = "String";
       }
    }
    element enet
@@ -112,7 +128,7 @@
  <parameter name="hideFromIPCatalog" value="false" />
  <parameter name="lockedInterfaceDefinition" value="" />
  <parameter name="maxAdditionalLatency" value="1" />
- <parameter name="projectName" value="" />
+ <parameter name="projectName" value="PerfDev.qpf" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="0" />
  <parameter name="testBenchDutName" value="" />
@@ -120,11 +136,7 @@
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
  <interface name="clk" internal="clk.clk_in" type="clock" dir="end" />
- <interface
-   name="enet_bypass"
-   internal="mac_filter.bypass"
-   type="avalon_streaming"
-   dir="start" />
+ <interface name="enet_bypass" internal="mac_filter.bypass" />
  <interface name="enet_dma_cfg" internal="enet_dma.cfg" type="avalon" dir="end" />
  <interface
    name="enet_dma_irq"
@@ -172,7 +184,9 @@
   <parameter name="resetSynchronousEdges" value="NONE" />
  </module>
  <module name="enet_dma" kind="enet_dma" version="16.1" enabled="1" />
- <module name="mac_filter" kind="mac_filter" version="16.1" enabled="1" />
+ <module name="mac_filter" kind="mac_filter" version="16.1" enabled="1">
+  <parameter name="enableBypass" value="false" />
+ </module>
  <module name="tse" kind="altera_eth_tse" version="16.1" enabled="1">
   <parameter name="AUTO_DEVICE" value="EP2AGX125EF35C4" />
   <parameter name="AUTO_DEVICE_SPEEDGRADE" value="4" />
