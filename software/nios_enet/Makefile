@@ -139,7 +139,7 @@ ACDS_VERSION := 16.1
 # Define path to the application ELF. 
 # It may be used by the makefile fragments so is defined before including them. 
 # 
-ELF := nios_dev.elf
+ELF := nios_enet.elf
 
 # Paths to C, C++, and assembly source files.
 C_SRCS += main.c
@@ -179,7 +179,7 @@ CRT0 :=
 SYS_LIB :=
 
 # Define path to the root of the BSP.
-BSP_ROOT_DIR := ../nios_dev_bsp/
+BSP_ROOT_DIR := ../nios_enet_bsp/
 
 # List of application specific include directories, library directories and library names
 APP_INCLUDE_DIRS :=

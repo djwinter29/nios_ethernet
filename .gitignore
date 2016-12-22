@@ -30,3 +30,5 @@ obj
 *.txt
 *.tcl~
 enet
+PerfDev.qws
+nios_enet.map
