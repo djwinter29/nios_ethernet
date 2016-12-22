@@ -139,12 +139,12 @@ ACDS_VERSION := 16.1
 # Define path to the application ELF. 
 # It may be used by the makefile fragments so is defined before including them. 
 # 
-ELF := nios_enet.elf
+ELF := net_dev.elf
 
 # Paths to C, C++, and assembly source files.
 C_SRCS += main.c
-C_SRCS += timer.c
 C_SRCS += task.c
+C_SRCS += timer.c
 CXX_SRCS :=
 ASM_SRCS :=
 
@@ -164,7 +164,7 @@ CREATE_LINKER_MAP := 1
 # Common arguments for ALT_CFLAGSs
 APP_CFLAGS_DEFINED_SYMBOLS :=
 APP_CFLAGS_UNDEFINED_SYMBOLS :=
-APP_CFLAGS_OPTIMIZATION := -O3
+APP_CFLAGS_OPTIMIZATION := -O0
 APP_CFLAGS_DEBUG_LEVEL := -g
 APP_CFLAGS_WARNINGS := -Wall
 APP_CFLAGS_USER_FLAGS :=
@@ -179,7 +179,7 @@ CRT0 :=
 SYS_LIB :=
 
 # Define path to the root of the BSP.
-BSP_ROOT_DIR := ../nios_enet_bsp/
+BSP_ROOT_DIR := ../net_dev_bsp/
 
 # List of application specific include directories, library directories and library names
 APP_INCLUDE_DIRS :=

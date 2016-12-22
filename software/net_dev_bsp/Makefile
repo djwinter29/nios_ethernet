@@ -100,8 +100,8 @@ ACDS_VERSION := 16.1
 # used to generate this makefile. 
 # BUILD_NUMBER: 196
 
-SETTINGS_FILE := ../../../nios/settings.bsp
-SOPC_FILE := D:/TonejetSource/MyProject/nios_enet/core.sopcinfo
+SETTINGS_FILE := settings.bsp
+SOPC_FILE := ../../core.sopcinfo
 
 #-------------------------------------------------------------------------------
 #                             TOOL & COMMAND DEFINITIONS
@@ -138,7 +138,7 @@ BSP_CFLAGS_DEBUG = -g
 # compiler optimization can remove variables and produce non-sequential 
 # execution of code while debugging. This setting defines the value of 
 # BSP_CFLAGS_OPTIMIZATION in Makefile. 
-BSP_CFLAGS_OPTIMIZATION = -O3
+BSP_CFLAGS_OPTIMIZATION = -O0
 
 # C/C++ compiler warning level. "-Wall" is commonly used.This setting defines 
 # the value of BSP_CFLAGS_WARNINGS in Makefile. 
@@ -208,6 +208,34 @@ GENERATED_C_LIB_SRCS += alt_sys_init.c
 # used to build each file.
 #-------------------------------------------------------------------------------
 
+# altera_avalon_jtag_uart_driver sources root 
+altera_avalon_jtag_uart_driver_SRCS_ROOT := drivers
+
+# altera_avalon_jtag_uart_driver sources 
+altera_avalon_jtag_uart_driver_C_LIB_SRCS := \
+	$(altera_avalon_jtag_uart_driver_SRCS_ROOT)/src/altera_avalon_jtag_uart_init.c \
+	$(altera_avalon_jtag_uart_driver_SRCS_ROOT)/src/altera_avalon_jtag_uart_read.c \
+	$(altera_avalon_jtag_uart_driver_SRCS_ROOT)/src/altera_avalon_jtag_uart_write.c \
+	$(altera_avalon_jtag_uart_driver_SRCS_ROOT)/src/altera_avalon_jtag_uart_ioctl.c \
+	$(altera_avalon_jtag_uart_driver_SRCS_ROOT)/src/altera_avalon_jtag_uart_fd.c
+
+# altera_avalon_timer_driver sources root 
+altera_avalon_timer_driver_SRCS_ROOT := drivers
+
+# altera_avalon_timer_driver sources 
+altera_avalon_timer_driver_C_LIB_SRCS := \
+	$(altera_avalon_timer_driver_SRCS_ROOT)/src/altera_avalon_timer_sc.c \
+	$(altera_avalon_timer_driver_SRCS_ROOT)/src/altera_avalon_timer_ts.c \
+	$(altera_avalon_timer_driver_SRCS_ROOT)/src/altera_avalon_timer_vars.c
+
+# altera_eth_tse_driver_hal sources root 
+altera_eth_tse_driver_hal_SRCS_ROOT := drivers
+
+# altera_eth_tse_driver_hal sources 
+altera_eth_tse_driver_hal_C_LIB_SRCS := \
+	$(altera_eth_tse_driver_hal_SRCS_ROOT)/src/altera_avalon_tse_system_info.c \
+	$(altera_eth_tse_driver_hal_SRCS_ROOT)/src/altera_avalon_tse.c
+
 # altera_nios2_gen2_hal_driver sources root 
 altera_nios2_gen2_hal_driver_SRCS_ROOT := HAL
 
@@ -245,6 +273,10 @@ altera_nios2_gen2_hal_driver_ASM_LIB_SRCS := \
 	$(altera_nios2_gen2_hal_driver_SRCS_ROOT)/src/alt_log_macro.S \
 	$(altera_nios2_gen2_hal_driver_SRCS_ROOT)/src/crt0.S
 
+# enet_engine_driver sources root 
+enet_engine_driver_SRCS_ROOT := drivers
+
+# enet_engine_driver sources 
 # hal sources root 
 hal_SRCS_ROOT := HAL
 
@@ -318,6 +350,9 @@ irq_handler_ASM_LIB_SRCS := \
 
 # Assemble all component C source files 
 COMPONENT_C_LIB_SRCS += \
+	$(altera_avalon_jtag_uart_driver_C_LIB_SRCS) \
+	$(altera_avalon_timer_driver_C_LIB_SRCS) \
+	$(altera_eth_tse_driver_hal_C_LIB_SRCS) \
 	$(altera_nios2_gen2_hal_driver_C_LIB_SRCS) \
 	$(hal_C_LIB_SRCS) \
 	$(irq_handler_C_LIB_SRCS)

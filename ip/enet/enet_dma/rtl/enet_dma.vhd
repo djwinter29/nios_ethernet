@@ -62,7 +62,7 @@ architecture RTL of EnetDataDMA is
     -- Reg 2: Recieve Start Address
     signal  RxStartAddress  : std_logic_vector(31 downto 0)             := (others => '0');
     -- Reg 3: Recieve Information
-    signal  RxLength        : 
+    --signal  RxLength        : 
     
     -- Reg  8: 
     

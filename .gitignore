@@ -32,3 +32,6 @@ obj
 enet
 PerfDev.qws
 nios_enet.map
+*.elf
+*.map
+*.bak

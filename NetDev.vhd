@@ -4,7 +4,7 @@ USE ieee.numeric_std.all;
 use core.core;
 
 
-entity PerfDev is
+entity NetDev is
     port (
         -- Clock and Reset
         Ref_clk                         : in  std_logic:= '0';
@@ -27,10 +27,10 @@ entity PerfDev is
         -- **************** Ethernet End ******************
         
         );
-end PerfDev;
+end NetDev;
 
 
-architecture rtl of PerfDev is
+architecture rtl of NetDev is
     signal sys_clk          : std_logic;
     signal clk_125          : std_logic;
     

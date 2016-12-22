@@ -2,9 +2,9 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Dec 22, 2016 12:00:12 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1482408012652</BspGeneratedUnixTimeStamp>
-        <BspGeneratedLocation>D:\TonejetSource\MyProject\nios_enet\software\nios_enet_bsp</BspGeneratedLocation>
+        <BspGeneratedTimeStamp>Dec 22, 2016 4:36:04 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1482424564993</BspGeneratedUnixTimeStamp>
+        <BspGeneratedLocation>D:\TonejetSource\MyProject\nios_enet\software\net_dev_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\core.sopcinfo</SopcDesignFile>
         <JdiFile>default</JdiFile>
@@ -158,7 +158,7 @@
                 <SettingName>hal.linker.enable_interrupt_stack</SettingName>
                 <Identifier>none</Identifier>
                 <Type>Boolean</Type>
-                <Value>1</Value>
+                <Value>0</Value>
                 <DefaultValue>0</DefaultValue>
                 <DestinationFile>none</DestinationFile>
                 <Description>Enables use of a separate interrupt stack. If true, defines the macro ALT_INTERRUPT_STACK in linker.h, adds a memory region called interrupt_stack to linker.x, and provides the symbols __alt_interrupt_stack_pointer and __alt_interrupt_stack_limit in linker.x.</Description>
@@ -170,7 +170,7 @@
                 <SettingName>hal.linker.interrupt_stack_size</SettingName>
                 <Identifier>none</Identifier>
                 <Type>DecimalNumber</Type>
-                <Value>512</Value>
+                <Value>1024</Value>
                 <DefaultValue>1024</DefaultValue>
                 <DestinationFile>none</DestinationFile>
                 <Description>Size of the interrupt stack in bytes.</Description>
@@ -386,7 +386,7 @@
                 <SettingName>hal.make.bsp_cflags_optimization</SettingName>
                 <Identifier>BSP_CFLAGS_OPTIMIZATION</Identifier>
                 <Type>UnquotedString</Type>
-                <Value>-O3</Value>
+                <Value>-O0</Value>
                 <DefaultValue>-O0</DefaultValue>
                 <DestinationFile>makefile_variable</DestinationFile>
                 <Description>C/C++ compiler optimization level. "-O0" = no optimization,"-O2" = "normal" optimization, etc. "-O0" is recommended for code that you want to debug since compiler optimization can remove variables and produce non-sequential execution of code while debugging. This setting defines the value of BSP_CFLAGS_OPTIMIZATION in Makefile.</Description>
@@ -782,7 +782,7 @@
                 <SettingName>hal.enable_c_plus_plus</SettingName>
                 <Identifier>ALT_NO_C_PLUS_PLUS</Identifier>
                 <Type>Boolean</Type>
-                <Value>1</Value>
+                <Value>0</Value>
                 <DefaultValue>1</DefaultValue>
                 <DestinationFile>public_mk_define</DestinationFile>
                 <Description>Enable support for a subset of the C++ language. This option increases code footprint by adding support for C++ constructors. Certain features, such as multiple inheritance and exceptions are not supported. If false, adds -DALT_NO_C_PLUS_PLUS to ALT_CPPFLAGS in public.mk, and reduces code footprint.</Description>
@@ -968,6 +968,18 @@
                 <name>irq_handler</name>
                 <version>default</version>
         </SoftwarePackageInfo>
+        <IgnoredFileInfo>
+                <componentName>Altera HAL</componentName>
+                <fileName>alt_iic_isr_register.c</fileName>
+        </IgnoredFileInfo>
+        <IgnoredFileInfo>
+                <componentName>altera_nios2_gen2_hal_driver</componentName>
+                <fileName>alt_software_exception.S</fileName>
+        </IgnoredFileInfo>
+        <IgnoredFileInfo>
+                <componentName>altera_nios2_gen2_hal_driver</componentName>
+                <fileName>alt_irq_entry.S</fileName>
+        </IgnoredFileInfo>
         <IgnoredFileInfo>
                 <componentName>altera_nios2_gen2_hal_driver</componentName>
                 <fileName>alt_exception_entry.S</fileName>
