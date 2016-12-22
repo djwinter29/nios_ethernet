@@ -70,3 +70,14 @@ set_false_path -setup -fall_from [get_clocks rgmii_rx_clk] -rise_to [get_clocks 
 # FALL to FALL are not avlid for hold analysis
 set_false_path -hold -rise_from [get_clocks rgmii_rx_clk] -rise_to [get_clocks rgmii_rx_clk]
 set_false_path -hold -fall_from [get_clocks rgmii_rx_clk] -fall_to [get_clocks rgmii_rx_clk]
+
+# TSE MAC MDIO and reset
+set_min_delay  2 -from * -to [get_ports {Enet_mdc Enet_mdio}]
+set_max_delay 10 -from * -to [get_ports {Enet_mdc Enet_mdio}]
+
+set_min_delay  0 -from [get_ports {Enet_mdio}] -to *
+set_max_delay  6 -from [get_ports {Enet_mdio}] -to *
+
+# Marvell Reset
+set_min_delay  2 -from * -to [get_ports {Enet_reset_n}]
+set_max_delay 10 -from * -to [get_ports {Enet_reset_n}]

@@ -4,11 +4,11 @@ use IEEE.numeric_std.all;
 
 entity EnetDataDMA is
     port( 
-        csi_clock_clk          : in  std_logic := '0';
-        csi_clock_reset        : in  std_logic := '0';
+        csi_clock_clk          : in  std_logic                          := '0';
+        csi_clock_reset        : in  std_logic                          := '0';
         
         -- Configuration
-        avs_cfg_address        : in  std_logic_vector(2 downto 0);
+        avs_cfg_address        : in  std_logic_vector(3 downto 0);
         avs_cfg_byteenable     : in  std_logic_vector(3 downto 0);
         avs_cfg_read           : in  std_logic; 
         avs_cfg_readdata       : out std_logic_vector(31 downto 0);
@@ -23,7 +23,7 @@ entity EnetDataDMA is
         
         -- Input data from Ethernet MAC
         asi_in_ready           : out std_logic;
-        asi_in_valid           : in  std_logic := '0';
+        asi_in_valid           : in  std_logic                          := '0';
         asi_in_startofpacket   : in  std_logic;
         asi_in_endofpacket     : in  std_logic;
         asi_in_error           : in  std_logic_vector(5 downto 0);
@@ -54,13 +54,42 @@ end entity EnetDataDMA;
 
 
 architecture RTL of EnetDataDMA is
-    constant  MTUSize       : natural       := 1518;
-    
     signal address          : integer;
     -- Reg 0: Settings and Status
+    signal  EnetPacketSize  : unsigned(31 downto 0)                     := (others => '0');
+    -- Reg 1: General Settings and status
+    
+    -- Reg 2: Recieve Start Address
+    signal  RxStartAddress  : std_logic_vector(31 downto 0)             := (others => '0');
+    -- Reg 3: Recieve Information
+    signal  RxLength        : 
+    
+    -- Reg  8: 
+    
+    -- Reg  9: 
+    
+    -- Reg 10: Sent Length 1 & 2
+    
+    -- Reg 11: Sent Length 3 & 4
+    
+    -- Reg 12: Sent Start Address1
+    
+    -- Reg 13: Sent Start Address2
+    
+    -- Reg 14: Sent Start Address3
+    
+    -- Reg 15: Sent Start Address4
+    
+    
+    
+    
 
 begin
     address <= to_integer(unsigned(avs_cfg_address));
+    
+    
+    
+    
     
     
 end architecture RTL;

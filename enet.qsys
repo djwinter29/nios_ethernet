@@ -102,6 +102,14 @@
          type = "String";
       }
    }
+   element enet
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Arria II GX";
+         type = "String";
+      }
+   }
    element enet_dma
    {
       datum _sortIndex

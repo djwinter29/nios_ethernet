@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Dec 21, 2016 2:45:06 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1482331506900</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Dec 22, 2016 9:57:21 AM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1482400641752</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>D:\TonejetSource\MyProject\nios_ethernet\software\nios_dev_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\core.sopcinfo</SopcDesignFile>
@@ -930,12 +930,12 @@
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>enet_enet_dma</slaveDescriptor>
-                <addressRange>0x00200000 - 0x0020001F</addressRange>
-                <addressSpan>32</addressSpan>
+                <addressRange>0x00200000 - 0x0020003F</addressRange>
+                <addressSpan>64</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>enet_tse</slaveDescriptor>
+                <slaveDescriptor>tse</slaveDescriptor>
                 <addressRange>0x00300000 - 0x003003FF</addressRange>
                 <addressSpan>1024</addressSpan>
                 <attributes/>
