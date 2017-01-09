@@ -106,8 +106,8 @@ uint32_t * InitialiseTaskStack( uint32_t * topOfStack,
 
 uint32_t StartScheduler( void )
 {
-    asm volatile (  " movia r2, restore_sp_from_pCurrentTCB        \n"
-                    " jmp r2                                          " );
+    //asm volatile (  " movia r2, restore_sp_from_pCurrentTCB        \n"
+    //                " jmp r2                                          " );
     /* Should not get here! */
     return 0;
 }

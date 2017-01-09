@@ -1,6 +1,7 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+use ieee.std_logic_misc.all;
 
 entity EnetMACDataFilter is
     port( 
@@ -58,6 +59,7 @@ begin
     aso_bypass_startofpacket  <= '1'                                                   when ProcessState = "01" and SecondWord = '0'   else '0';
     aso_bypass_endofpacket    <= asi_in_endofpacket                                    when ProcessState = "10"                        else '0';
     aso_bypass_empty          <= asi_in_empty                                          when ProcessState = "10"                        else (others => '0');
+    aso_bypass_error          <= or_reduce(asi_in_error);
     aso_bypass_data           <= x"0000" & BufferedMac(47 downto 32)                   when ProcessState = "01" and SecondWord = '0'
                           else BufferedMac(31 downto 0)                                when ProcessState = "01" and SecondWord = '1'
                           else asi_in_data;
@@ -69,6 +71,7 @@ begin
     aso_out_startofpacket   <= '1'                                                     when ProcessState = "01" and SecondWord = '0'   else '0';
     aso_out_endofpacket     <= asi_in_endofpacket                                      when ProcessState = "10"                        else '0';
     aso_out_empty           <= asi_in_empty                                            when ProcessState = "10"                        else (others => '0');
+    aso_out_error           <= asi_in_error;
     aso_out_data            <= x"0000" & BufferedMac(47 downto 32)                     when ProcessState = "01" and SecondWord = '0'
                           else BufferedMac(31 downto 0)                                when ProcessState = "01" and SecondWord = '1'
                           else asi_in_data ;

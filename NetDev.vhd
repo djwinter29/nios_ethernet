@@ -38,17 +38,30 @@ architecture rtl of NetDev is
     signal mdio_in_pad      : std_logic;
     signal mdio_out_pad     : std_logic;
     signal mdio_oen_pad     : std_logic;
+    -- PHY Reset Counter
+    signal epcount          : unsigned(21 downto 0) :=(others => '0');
     
 begin
-
-
-    -- ****** MDIO **************
+    -- ************** PHY Tx Clock **********************
+    Enet_gtx_clk                    <= clk_125;
+    -- **************    MDIO      **********************
     mdio_in_pad                     <= Enet_mdio;
     Enet_mdio                       <= mdio_out_pad when mdio_oen_pad = '0' else 'Z';
+    -- **************  PHY Reset   **********************
+    SystemReset_proc : process
+    begin
+        wait until rising_edge(sys_clk);
+        
+        if epcount < 2800000 then
+            epcount     <= epcount + 1;
+        end if;
+    end process;
+    Enet_reset_n        <= '0'               when epcount >= 1100000 and epcount < 2800000         else '1';
+
     
 
-
-
+    
+    -- *************************************************
     sys_core : core.core
     port map (
         clk_clk                     => sys_clk,                     --                   clk.clk

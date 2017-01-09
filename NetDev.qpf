@@ -19,13 +19,14 @@
 #
 # Quartus Prime
 # Version 16.1.0 Build 196 10/24/2016 SJ Standard Edition
-# Date created = 17:03:28  November 23, 2016
+# Date created = 16:44:59  December 22, 2016
 #
 # -------------------------------------------------------------------------- #
 
 QUARTUS_VERSION = "16.1"
-DATE = "17:03:28  November 23, 2016"
+DATE = "16:44:59  December 22, 2016"
 
 # Revisions
 
 PROJECT_REVISION = "NetDev"
+

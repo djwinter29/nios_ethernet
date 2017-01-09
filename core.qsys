@@ -180,7 +180,7 @@
  <parameter name="hideFromIPCatalog" value="false" />
  <parameter name="lockedInterfaceDefinition" value="" />
  <parameter name="maxAdditionalLatency" value="1" />
- <parameter name="projectName" value="PerfDev.qpf" />
+ <parameter name="projectName" value="NetDev.qpf" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="0" />
  <parameter name="testBenchDutName" value="" />
@@ -259,7 +259,7 @@
   <parameter name="dcache_bursts" value="false" />
   <parameter name="dcache_numTCDM" value="0" />
   <parameter name="dcache_ramBlockType" value="Automatic" />
-  <parameter name="dcache_size" value="2048" />
+  <parameter name="dcache_size" value="0" />
   <parameter name="dcache_tagramBlockType" value="Automatic" />
   <parameter name="dcache_victim_buf_impl" value="ram" />
   <parameter name="debug_OCIOnchipTrace" value="_128" />
@@ -369,7 +369,7 @@
   <parameter name="setting_shadowRegisterSets" value="0" />
   <parameter name="setting_showInternalSettings" value="false" />
   <parameter name="setting_showUnpublishedSettings" value="false" />
-  <parameter name="setting_support31bitdcachebypass" value="true" />
+  <parameter name="setting_support31bitdcachebypass" value="false" />
   <parameter name="setting_tmr_output_disable" value="false" />
   <parameter name="setting_usedesignware" value="false" />
   <parameter name="shift_rot_impl" value="1" />

@@ -336,17 +336,6 @@ hal_C_LIB_SRCS := \
 	$(hal_SRCS_ROOT)/src/alt_wait.c \
 	$(hal_SRCS_ROOT)/src/alt_write.c
 
-# irq_handler sources root 
-irq_handler_SRCS_ROOT := HAL
-
-# irq_handler sources 
-irq_handler_C_LIB_SRCS := \
-	$(irq_handler_SRCS_ROOT)/src/alt_iic_isr_register.c
-
-irq_handler_ASM_LIB_SRCS := \
-	$(irq_handler_SRCS_ROOT)/src/alt_exception_entry.S \
-	$(irq_handler_SRCS_ROOT)/src/alt_irq_entry.S
-
 
 # Assemble all component C source files 
 COMPONENT_C_LIB_SRCS += \
@@ -354,13 +343,11 @@ COMPONENT_C_LIB_SRCS += \
 	$(altera_avalon_timer_driver_C_LIB_SRCS) \
 	$(altera_eth_tse_driver_hal_C_LIB_SRCS) \
 	$(altera_nios2_gen2_hal_driver_C_LIB_SRCS) \
-	$(hal_C_LIB_SRCS) \
-	$(irq_handler_C_LIB_SRCS)
+	$(hal_C_LIB_SRCS)
 
 # Assemble all component assembly source files 
 COMPONENT_ASM_LIB_SRCS += \
-	$(altera_nios2_gen2_hal_driver_ASM_LIB_SRCS) \
-	$(irq_handler_ASM_LIB_SRCS)
+	$(altera_nios2_gen2_hal_driver_ASM_LIB_SRCS)
 
 # Assemble all component C++ source files 
 COMPONENT_CPP_LIB_SRCS += \
